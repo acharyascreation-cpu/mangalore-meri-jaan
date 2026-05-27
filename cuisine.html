@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mangalore Cuisine — Authentic Coastal Flavours</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    .cuisine-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .cuisine-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+    .cuisine-card-img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+    .cuisine-card-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .cuisine-card:hover .cuisine-card-img { transform: scale(1.08); }
+
+    .cuisine-badge {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--ocean);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .cuisine-card-body { padding: 28px; flex: 1; }
+    .cuisine-card-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--ocean);
+      margin-bottom: 8px;
+    }
+    .cuisine-card-body p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .cuisine-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .cuisine-tag {
+      background: var(--sand);
+      color: var(--ocean);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* Featured dish strip */
+    .featured-dish {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+      margin-bottom: 64px;
+      background: var(--white);
+    }
+    .featured-dish-img {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      object-fit: cover;
+    }
+    .featured-dish-body {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .featured-dish-body h2 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      color: var(--ocean);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .featured-dish-body p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Cuisine intro */
+    .cuisine-intro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    .cuisine-intro-item {
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .cuisine-intro-item .icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .cuisine-intro-item h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--ocean);
+      margin-bottom: 8px;
+    }
+    .cuisine-intro-item p { font-size: 0.85rem; color: var(--muted); }
+
+    @media (max-width: 768px) {
+      .featured-dish { grid-template-columns: 1fr; }
+      .featured-dish-img { min-height: 240px; }
+      .featured-dish-body { padding: 32px 24px; }
+      .cuisine-intro-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Manga<span>lore</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="cuisine.html" class="active">Cuisine</a></li>
+        <li><a href="add.html">Sacred Places</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══ CUISINE HERO ══ -->
+  <div class="cuisine-hero">
+    <div>
+      <h1>Mangalorean Cuisine</h1>
+      <p>Where coconut, spice, and the sea meet on your plate</p>
+    </div>
+  </div>
+
+  <div class="breadcrumb container">
+    <a href="index.html">Home</a> › <span>Cuisine</span>
+  </div>
+
+  <!-- ══ INTRO ══ -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="section-header centered">
+        <p class="section-label">Coastal Karnataka Kitchen</p>
+        <h2 class="section-title">A Cuisine Unlike Any Other</h2>
+        <div class="divider"></div>
+        <p class="section-desc">
+          Mangalorean food is a glorious collision of coastal abundance and spice-route heritage.
+          Coconut in every form — milk, grated, oil — is the soul of the kitchen, paired with
+          fiery red chillies from Byadgi and fresh catch from the Arabian Sea.
+        </p>
+      </div>
+
+      <div class="cuisine-intro-grid">
+        <div class="cuisine-intro-item fade-up delay-1">
+          <div class="icon">🥥</div>
+          <h4>Coconut-Forward</h4>
+          <p>Fresh coconut forms the base of chutneys, curries, and even desserts in every Mangalorean kitchen.</p>
+        </div>
+        <div class="cuisine-intro-item fade-up delay-2">
+          <div class="icon">🌶️</div>
+          <h4>Richly Spiced</h4>
+          <p>Byadgi chillies, pepper, and fresh coriander combine for a heat that is flavourful rather than overwhelming.</p>
+        </div>
+        <div class="cuisine-intro-item fade-up delay-3">
+          <div class="icon">🐟</div>
+          <h4>Seafood Soul</h4>
+          <p>From sardines to kingfish, pomfret to tiger prawns — the sea provides and Mangalore cooks with reverence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FEATURED: FISH CURRY ══ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Signature Dish</p>
+        <h2 class="section-title">Featured Speciality</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="featured-dish fade-in">
+        <img
+          class="featured-dish-img"
+          src="Manglorean-Fish-Curry.jpg"
+          alt="Mangalorean Fish Curry"
+        />
+        <div class="featured-dish-body">
+          <span class="card-tag">Iconic Dish</span>
+          <h2>Mangalorean Fish Curry</h2>
+          <p>
+            There is no dish more emblematic of Mangalore's identity than its fish curry —
+            a deep-red, tangy gravy made with Byadgi chillies, fresh coconut milk, and
+            a generous dose of kudampuli (Garcinia cambogia) for that signature tartness.
+            Simmered with seer fish or mackerel and served with boiled rice, it is the
+            ultimate expression of coastal Karnataka on a plate.
+          </p>
+          <ul class="card-highlights">
+            <li>Made with Byadgi chillies &amp; coconut milk</li>
+            <li>Soured with kudampuli (Kodampuli/Gamboge)</li>
+            <li>Best eaten with neer dosa or boiled rice</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ══ DISH CARDS GRID ══ -->
+      <div class="section-header centered" style="margin-top:72px;">
+        <p class="section-label">Must Try</p>
+        <h2 class="section-title">Authentic Mangalorean Dishes</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+
+        <!-- Neer Dosa -->
+        <article class="cuisine-card fade-up delay-1">
+          <div class="cuisine-card-img-wrap">
+            <img
+              class="cuisine-card-img"
+              src="neer-dosa.jpg"
+              alt="Neer Dosa"
+            />
+            <span class="cuisine-badge">Breakfast</span>
+          </div>
+          <div class="cuisine-card-body">
+            <h3>Neer Dosa</h3>
+            <p>
+              Paper-thin, ghostly white crepes made from rice batter with no fermentation —
+              neer ("water" in Tulu) dosas are steamed on a flat pan and served
+              rolled or folded alongside coconut chutney, chicken curry, or jaggery.
+              Light, delicate, and utterly addictive.
+            </p>
+            <div class="cuisine-tags">
+              <span class="cuisine-tag">Vegetarian friendly</span>
+              <span class="cuisine-tag">Gluten free</span>
+              <span class="cuisine-tag">Light</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kori Rotti -->
+        <article class="cuisine-card fade-up delay-2">
+          <div class="cuisine-card-img-wrap">
+            <img
+              class="cuisine-card-img"
+              src="kori-rotti.jpg"
+              alt="Kori Rotti"
+            />
+            <span class="cuisine-badge">Signature</span>
+          </div>
+          <div class="cuisine-card-body">
+            <h3>Kori Rotti</h3>
+            <p>
+              The undisputed king of Tulu Nadu cuisine — crispy, wafer-like rice crackers
+              (rotti) soaked in a fiery chicken (kori) coconut curry. The crackers soften
+              just enough to absorb the curry while retaining a slight crunch. A dish
+              of extraordinary, comforting depth.
+            </p>
+            <div class="cuisine-tags">
+              <span class="cuisine-tag">Non-vegetarian</span>
+              <span class="cuisine-tag">Spicy</span>
+              <span class="cuisine-tag">Traditional</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Mangalore Buns -->
+        <article class="cuisine-card fade-up delay-3">
+          <div class="cuisine-card-img-wrap">
+            <img
+              class="cuisine-card-img"
+              src="manglorebuns.jpg"
+              alt="Mangalore Buns"
+            />
+            <span class="cuisine-badge">Breakfast</span>
+          </div>
+          <div class="cuisine-card-body">
+            <h3>Mangalore Buns</h3>
+            <p>
+              Soft, pillowy deep-fried bread made from ripe banana, maida, and a touch
+              of sugar — slightly sweet, beautifully puffy, and best eaten hot with
+              coconut chutney and sambar. A quintessential Mangalorean breakfast item
+              you will find nowhere else quite like this.
+            </p>
+            <div class="cuisine-tags">
+              <span class="cuisine-tag">Vegetarian</span>
+              <span class="cuisine-tag">Sweet &amp; savoury</span>
+              <span class="cuisine-tag">Deep fried</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Goli Baje -->
+        <article class="cuisine-card fade-up delay-2">
+          <div class="cuisine-card-img-wrap">
+            <img
+              class="cuisine-card-img"
+              src="golibajje.jpg"
+              alt="Goli Baje"
+            />
+            <span class="cuisine-badge">Snack</span>
+          </div>
+          <div class="cuisine-card-body">
+            <h3>Goli Baje</h3>
+            <p>
+              Golden, crunchy fritters made from maida, sour curd, green chilli,
+              ginger, and curry leaves — fried to crispy perfection and served
+              piping hot with coconut chutney. Also known as Mysore Bajji, Goli Baje
+              is the definitive Mangalorean tea-time snack.
+            </p>
+            <div class="cuisine-tags">
+              <span class="cuisine-tag">Vegetarian</span>
+              <span class="cuisine-tag">Crispy</span>
+              <span class="cuisine-tag">Street food</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Chicken Sukka -->
+        <article class="cuisine-card fade-up delay-3">
+          <div class="cuisine-card-img-wrap">
+            <img
+              class="cuisine-card-img"
+              src="chickensukka.jpg"
+              alt="Chicken Sukka"
+            />
+            <span class="cuisine-badge">Must Try</span>
+          </div>
+          <div class="cuisine-card-body">
+            <h3>Chicken Sukka</h3>
+            <p>
+              A dry-preparation chicken dish cooked with freshly grated coconut,
+              aromatic spices, and curry leaves — sukka means "dry" and this dish
+              delivers concentrated, smoky flavour in every bite. Served as a side
+              at weddings and celebrations, it is pure Tulu cuisine royalty.
+            </p>
+            <div class="cuisine-tags">
+              <span class="cuisine-tag">Non-vegetarian</span>
+              <span class="cuisine-tag">Dry preparation</span>
+              <span class="cuisine-tag">Festive</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHERE TO EAT STRIP ══ -->
+  <section class="section section-dark" style="padding:64px 0; text-align:center;">
+    <div class="container">
+      <h2 class="section-title" style="color:var(--white); margin-bottom:16px;">
+        Where to Eat in Mangalore
+      </h2>
+      <p style="color:rgba(255,255,255,0.75); max-width:560px; margin:0 auto 36px; font-size:1rem;">
+        Shetty's Lunch Home, Hotel Ideal, Machali, Janatha Deluxe, and any of the
+        old-school Udupi restaurants lining Balmatta Road.
+      </p>
+      <a href="explore.html#hotels" class="btn-primary">See Hotels &amp; Restaurants</a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Mangalore City Guide</h3>
+          <p>Your definitive guide to exploring the Pearl of the Arabian Sea.</p>
+          <div class="footer-social">
+            <a href="https://github.com/acharyascreation-cpu" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/acharyas-creation-896aa8411/" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.instagram.com/acharyascreation/" target="_blank" rel="noopener noreferrer" class="social-btn" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="cuisine.html">Cuisine</a></li>
+            <li><a href="add.html">Sacred Places</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Food</h4>
+          <ul class="footer-links">
+            <li><a href="#">Neer Dosa</a></li>
+            <li><a href="#">Kori Rotti</a></li>
+            <li><a href="#">Fish Curry</a></li>
+            <li><a href="#">Goli Baje</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact-item">
+            <span>📍</span><span>Mangalore, Karnataka 575001</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>✉️</span><span>acharyascreation@gmail.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Mangalore City Guide. All rights reserved.</span>
+        <span>Made with ❤️ for Kudla</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
